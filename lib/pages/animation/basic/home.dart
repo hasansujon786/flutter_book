@@ -11,27 +11,8 @@ class BasicAnimationHome extends StatefulWidget {
   _BasicAnimationHomeState createState() => _BasicAnimationHomeState();
 }
 
-class _BasicAnimationHomeState extends State<BasicAnimationHome> with SingleTickerProviderStateMixin {
+class _BasicAnimationHomeState extends State<BasicAnimationHome> {
   final double _headerHeight = 220;
-  late AnimationController _controller;
-  late Animation<Offset> _slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
-    final _curveAnimation = CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn);
-
-    _slideAnimation = Tween<Offset>(begin: const Offset(0, -1), end: const Offset(0, 0)).animate(_curveAnimation);
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _controller.forward();
-    });
-
-    // _controller.addListener(() {
-    //   setState(() {});
-    // });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +24,24 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> with SingleTick
             width: double.infinity,
             color: Colors.deepPurple.shade400,
             child: Padding(
-              padding: const EdgeInsets.only(top: 70, left: 20),
-              child: SlideTransition(
-                position: _slideAnimation,
+              padding: const EdgeInsets.only(top: 70),
+              child: TweenAnimationBuilder(
                 child: Text(
                   'Net Ninja',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.white),
                 ),
+                curve: Curves.fastOutSlowIn,
+                duration: const Duration(milliseconds: 500),
+                tween: Tween<double>(begin: 0, end: 1),
+                builder: (BuildContext context, dynamic value, Widget? child) {
+                  return Opacity(
+                    opacity: value,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: value * 20),
+                      child: child,
+                    ),
+                  );
+                },
               ),
             ),
           ),
