@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_book/pages/animation/basic/models/ninja.dart';
+
+import 'models/ninja.dart';
 
 class NinjaPage extends StatefulWidget {
   const NinjaPage({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class NinjaPage extends StatefulWidget {
 class _NinjaPageState extends State<NinjaPage> {
   @override
   Widget build(BuildContext context) {
-    final ninja = ModalRoute.of(context)!.settings.arguments as Ninja;
+    final ninja = ModalRoute.of(context)!.settings.arguments as NinjaData;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
