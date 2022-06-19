@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_book/pages/sliver.dart';
+import './pages.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,7 +31,17 @@ class _HomePageState extends State<HomePage> {
             controller: _scrollController,
             slivers: [
               _buildAppBar(),
-              _buildContents(),
+              SliverToBoxAdapter(
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  primary: false,
+                  shrinkWrap: true,
+                  children: [
+                    _buildLink('Sliver App Bar', SliverPage.routeName),
+                    _buildLink('Basic Animation', BasicAnimationHome.routeName),
+                  ],
+                ),
+              ),
             ],
           ),
         ],
@@ -59,22 +69,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildContents() {
-    return SliverToBoxAdapter(
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-        primary: false,
-        shrinkWrap: true,
-        children: [
-          ListTile(
-            tileColor: Theme.of(context).cardColor,
-            title: const Text('Sliver App Bar'),
-            onTap: () {
-              Navigator.restorablePushNamed(context, SliverPage.routeName);
-            },
-          )
-        ],
-      ),
+  Widget _buildLink(String title, String path) {
+    return ListTile(
+      tileColor: Theme.of(context).cardColor,
+      title: Text(title),
+      onTap: () {
+        Navigator.restorablePushNamed(context, path);
+      },
     );
   }
 }

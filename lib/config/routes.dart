@@ -1,9 +1,10 @@
-import 'package:flutter_book/pages/home.dart';
-import 'package:flutter_book/pages/sliver.dart';
+import '../pages/pages.dart';
 
 routes() {
   return {
     '/': (context) => const HomePage(),
     SliverPage.routeName: (context) => const SliverPage(),
+    BasicAnimationHome.routeName: (context) => const BasicAnimationHome(),
+    NinjaPage.routeName: (context) => const NinjaPage(),
   };
 }
