@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 
-import 'models/ninja.dart';
+import '../../../config/config.dart';
+import 'models/pokemon.dart';
 
-class NinjaPage extends StatefulWidget {
-  const NinjaPage({Key? key}) : super(key: key);
+class PokemonDetailsPage extends StatefulWidget {
+  const PokemonDetailsPage({Key? key}) : super(key: key);
 
-  static const routeName = '/ninja';
+  static const routeName = '/pokemon_details';
   @override
-  _NinjaPageState createState() => _NinjaPageState();
+  State<PokemonDetailsPage> createState() => _PokemonDetailsPageState();
 }
 
-class _NinjaPageState extends State<NinjaPage> {
+class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    final ninja = ModalRoute.of(context)!.settings.arguments as NinjaData;
+    final pokemon = ModalRoute.of(context)!.settings.arguments as PokemonData;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text(ninja.name),
+        title: Text(pokemon.name),
       ),
       body: Column(
         children: [
@@ -28,16 +29,16 @@ class _NinjaPageState extends State<NinjaPage> {
             height: 320,
             width: double.infinity,
             child: Hero(
-              tag: 'ninja-${ninja.id}',
-              child: Image.network(
-                'https://images.pexels.com/photos/3566120/pexels-photo-3566120.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+              tag: 'ninja-${pokemon.id}',
+              child: Image.asset(
+                LocalAssets.backgroundNeonRed,
                 fit: BoxFit.cover,
               ),
             ),
           ),
           ListTile(
-            title: Text(ninja.name),
-            subtitle: Text('Age: ${ninja.age} - Power: ${ninja.power}'),
+            title: Text(pokemon.name),
+            subtitle: Text('Age: ${pokemon.age} - Power: ${pokemon.power}'),
             trailing: const AnimatedFavButton(),
           )
         ],
@@ -50,7 +51,7 @@ class AnimatedFavButton extends StatefulWidget {
   const AnimatedFavButton({Key? key}) : super(key: key);
 
   @override
-  _AnimatedFavButtonState createState() => _AnimatedFavButtonState();
+  State<AnimatedFavButton> createState() => _AnimatedFavButtonState();
 }
 
 class _AnimatedFavButtonState extends State<AnimatedFavButton> with SingleTickerProviderStateMixin {
@@ -81,8 +82,8 @@ class _AnimatedFavButtonState extends State<AnimatedFavButton> with SingleTicker
     _colorAnimation = ColorTween(begin: Colors.grey, end: Colors.red).animate(_curve);
 
     _sizeAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween<double>(begin: 30, end: 50), weight: 50),
-      TweenSequenceItem(tween: Tween<double>(begin: 50, end: 30), weight: 50),
+      TweenSequenceItem(tween: Tween<double>(begin: 1, end: 2), weight: 50),
+      TweenSequenceItem(tween: Tween<double>(begin: 2, end: 1), weight: 50),
     ]).animate(_curve);
   }
 
@@ -95,10 +96,14 @@ class _AnimatedFavButtonState extends State<AnimatedFavButton> with SingleTicker
       icon: AnimatedBuilder(
         animation: _controller,
         builder: (BuildContext context, Widget? child) {
-          return Icon(
-            Icons.favorite,
-            color: _colorAnimation.value,
-            size: _sizeAnimation.value,
+          return Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.diagonal3Values(_sizeAnimation.value, _sizeAnimation.value, 0),
+            child: Icon(
+              Icons.favorite,
+              color: _colorAnimation.value,
+              size: 30,
+            ),
           );
         },
       ),

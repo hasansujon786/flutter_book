@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'models/ninja.dart';
+import '../../../config/config.dart';
 import '../../pages.dart';
+import 'models/pokemon.dart';
 
 class BasicAnimationHome extends StatefulWidget {
   const BasicAnimationHome({Key? key}) : super(key: key);
 
   static const routeName = '/basic_animation_home';
   @override
-  _BasicAnimationHomeState createState() => _BasicAnimationHomeState();
+  State<BasicAnimationHome> createState() => _BasicAnimationHomeState();
 }
 
 class _BasicAnimationHomeState extends State<BasicAnimationHome> {
@@ -19,39 +20,39 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> {
   );
 
   var ft = Future(() {});
-  final List<NinjaData> _ninjaListTiles = [];
+  final List<PokemonData> _pokemonListTiles = [];
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ninjasData.forEach(initNinjas);
+      pokemonsData.forEach(initpokemons);
     });
   }
 
-  void initNinjas(NinjaData ninja) {
+  void initpokemons(PokemonData pokemon) {
     ft = ft.then((_) {
       return Future.delayed(const Duration(milliseconds: 50), () {
-        addNinja(ninja);
+        addpokemon(pokemon);
       });
     });
   }
 
-  void addNinja(NinjaData ninja) {
-    final nextIndex = _ninjaListTiles.length;
-    _ninjaListTiles.add(ninja);
+  void addpokemon(PokemonData pokemon) {
+    final nextIndex = _pokemonListTiles.length;
+    _pokemonListTiles.add(pokemon);
     _listKey.currentState?.insertItem(nextIndex);
   }
 
-  void removeNinja(int index) {
-    var removedItem = _ninjaListTiles[index];
-    _ninjaListTiles.removeAt(index);
+  void removepokemon(int index) {
+    var removedItem = _pokemonListTiles[index];
+    _pokemonListTiles.removeAt(index);
     _listKey.currentState?.removeItem(index, (context, animation) {
       return FadeTransition(
         opacity: animation,
         child: SizeTransition(
           sizeFactor: animation,
-          child: NinjaTile(index, ninja: removedItem, onDelete: (idx) {}),
+          child: PokemonTile(index, pokemon: removedItem, onDelete: (idx) {}),
         ),
       );
     });
@@ -67,13 +68,13 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> {
             height: MediaQuery.of(context).size.height - _headerHeight,
             child: AnimatedList(
               key: _listKey,
-              initialItemCount: _ninjaListTiles.length,
+              initialItemCount: _pokemonListTiles.length,
               itemBuilder: (BuildContext context, int index, animation) {
                 return FadeTransition(
                   opacity: animation,
                   child: SlideTransition(
                     position: animation.drive(_offsetTween),
-                    child: NinjaTile(index, ninja: _ninjaListTiles[index], onDelete: removeNinja),
+                    child: PokemonTile(index, pokemon: _pokemonListTiles[index], onDelete: removepokemon),
                   ),
                 );
               },
@@ -95,10 +96,6 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> {
           Padding(
             padding: const EdgeInsets.only(top: 70),
             child: TweenAnimationBuilder(
-              child: Text(
-                'Net Ninja',
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.white),
-              ),
               curve: Curves.fastOutSlowIn,
               duration: const Duration(milliseconds: 500),
               tween: Tween<double>(begin: 0, end: 1),
@@ -111,6 +108,10 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> {
                   ),
                 );
               },
+              child: Text(
+                'My Pokemons',
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.white),
+              ),
             ),
           ),
           const Spacer(),
@@ -121,15 +122,15 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextButton(
                     onPressed: () {
-                      var _ninja = (List.of(ninjasData)..shuffle()).first;
-                      var ninja = NinjaData(
+                      var randompokemon = (List.of(pokemonsData)..shuffle()).first;
+                      var pokemon = PokemonData(
                         id: DateTime.now().toString(),
-                        name: _ninja.name,
-                        age: _ninja.age,
-                        power: _ninja.power,
+                        name: randompokemon.name,
+                        age: randompokemon.age,
+                        power: randompokemon.power,
                       );
 
-                      _ninjaListTiles.insert(0, ninja);
+                      _pokemonListTiles.insert(0, pokemon);
                       _listKey.currentState?.insertItem(0);
                     },
                     child: const Text('Add Item')),
@@ -143,14 +144,14 @@ class _BasicAnimationHomeState extends State<BasicAnimationHome> {
   }
 }
 
-class NinjaTile extends StatelessWidget {
+class PokemonTile extends StatelessWidget {
   final int index;
-  final NinjaData ninja;
+  final PokemonData pokemon;
   final void Function(int) onDelete;
-  const NinjaTile(
+  const PokemonTile(
     this.index, {
     Key? key,
-    required this.ninja,
+    required this.pokemon,
     required this.onDelete,
   }) : super(key: key);
 
@@ -161,21 +162,21 @@ class NinjaTile extends StatelessWidget {
       // minVerticalPadding: 0,
       // horizontalTitleGap: 0,
       leading: Hero(
-        tag: 'ninja-${ninja.id}',
+        tag: 'pokemon-${pokemon.id}',
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           child: SizedBox(
             height: double.infinity,
             width: 60,
-            child: Image.network(
-              'https://images.pexels.com/photos/3566120/pexels-photo-3566120.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+            child: Image.asset(
+              LocalAssets.backgroundNeonRed,
               fit: BoxFit.cover,
             ),
           ),
         ),
       ),
-      title: Text(ninja.name),
-      subtitle: Text('Age: ${ninja.age} - Power: ${ninja.power}'),
+      title: Text(pokemon.name),
+      subtitle: Text('Age: ${pokemon.age} - Power: ${pokemon.power}'),
       trailing: SizedBox(
         width: 80,
         child: Row(
@@ -187,7 +188,7 @@ class NinjaTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.pushNamed(context, NinjaPage.routeName, arguments: ninja);
+        Navigator.pushNamed(context, PokemonDetailsPage.routeName, arguments: pokemon);
       },
     );
   }
