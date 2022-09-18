@@ -165,14 +165,7 @@ class PokemonTile extends StatelessWidget {
         tag: 'pokemon-${pokemon.id}',
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
-          child: SizedBox(
-            height: double.infinity,
-            width: 60,
-            child: Image.asset(
-              LocalAssets.backgroundNeonRed,
-              fit: BoxFit.cover,
-            ),
-          ),
+          child: Container(color: Colors.red, height: double.infinity, width: 60),
         ),
       ),
       title: Text(pokemon.name),

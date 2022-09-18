@@ -12,16 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var top = 0.0;
-  late ScrollController _scrollController;
-
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    _scrollController.addListener(() => setState(() {}));
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +19,11 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           CustomScrollView(
-            controller: _scrollController,
             slivers: [
               _buildAppBar(),
               SliverToBoxAdapter(
                 child: ListView(
+                  physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   primary: false,
                   shrinkWrap: true,
@@ -41,6 +31,7 @@ class _HomePageState extends State<HomePage> {
                     _buildLink('Sliver App Bar', SliverPage.routeName),
                     _buildLink('Basic Animation', BasicAnimationHome.routeName),
                     _buildLink('Staggered Profile Page', StaggeredProfilePageAnimator.routeName),
+                    _buildLink('Face Pile', FacePileScreen.routeName),
                   ],
                 ),
               ),
@@ -58,11 +49,11 @@ class _HomePageState extends State<HomePage> {
       stretch: true,
       expandedHeight: 150,
       flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
+        titlePadding: const EdgeInsets.symmetric(vertical: 12),
         title: Row(
           children: const [
             SizedBox(width: 12),
-            CircleAvatar(child: FlutterLogo(), backgroundColor: Colors.white12),
+            CircleAvatar(backgroundColor: Colors.white12, child: FlutterLogo()),
             SizedBox(width: 12),
             Text('Flutter Book')
           ],

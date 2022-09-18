@@ -122,7 +122,11 @@ class _SliverPageState extends State<SliverPage> {
         shrinkWrap: true,
         itemCount: 50,
         itemBuilder: (ctx, i) {
-          return const FlutterLogo();
+          return const ListTile(
+            leading: FlutterLogo(),
+            title: Text('Flutter'),
+            subtitle: Text('Subtitle'),
+          );
         },
       ),
     );

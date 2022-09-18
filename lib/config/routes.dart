@@ -7,5 +7,6 @@ routes() {
     BasicAnimationHome.routeName: (context) => const BasicAnimationHome(),
     PokemonDetailsPage.routeName: (context) => const PokemonDetailsPage(),
     StaggeredProfilePageAnimator.routeName: (context) => const StaggeredProfilePageAnimator(),
+    FacePileScreen.routeName: (context) => const FacePileScreen(),
   };
 }

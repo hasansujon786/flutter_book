@@ -8,7 +8,7 @@ class StaggeredProfilePageAnimator extends StatefulWidget {
 
   static const routeName = '/staggered_profile';
   @override
-  _StaggeredProfilePageAnimatorState createState() => _StaggeredProfilePageAnimatorState();
+  State<StaggeredProfilePageAnimator> createState() => _StaggeredProfilePageAnimatorState();
 }
 
 class _StaggeredProfilePageAnimatorState extends State<StaggeredProfilePageAnimator>
@@ -96,7 +96,7 @@ class StaggeredProfilePage extends StatelessWidget {
       left: screenWidth / 2 - (size / 2),
       child: Transform(
         alignment: Alignment.center,
-        transform: Matrix4.diagonal3Values(animatedValue, animatedValue, 0),
+        transform: Matrix4.diagonal3Values(animatedValue, animatedValue, animatedValue),
         child: Container(
           height: size,
           width: size,
