@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
                     _buildLink('Sliver App Bar', SliverPage.routeName),
                     _buildLink('Basic Animation', BasicAnimationHome.routeName),
                     _buildLink('Staggered Profile Page', StaggeredProfilePageAnimator.routeName),
+                    _buildLink('Parallax List', ParallaxList.routeName),
                     _buildLink('Face Pile', FacePileScreen.routeName),
                   ],
                 ),
