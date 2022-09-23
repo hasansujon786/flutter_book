@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           _buildLink('Parallax List', ParallaxList.routeName),
           _buildLink('Face Pile', FacePileScreen.routeName),
           _buildLink('Basic clip path example', BasicClipPathExample.routeName),
+          _buildLink('Simple Carousel', SimpleCarousel.routeName),
           const SizedBox(height: 30),
         ],
       ),
