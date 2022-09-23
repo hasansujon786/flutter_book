@@ -16,28 +16,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple.shade300,
-      body: Stack(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Flutter Book'),
+      ),
+      body: ListView(
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        primary: false,
+        shrinkWrap: true,
         children: [
-          CustomScrollView(
-            slivers: [
-              _buildAppBar(),
-              SliverToBoxAdapter(
-                child: ListView(
-                  physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  primary: false,
-                  shrinkWrap: true,
-                  children: [
-                    _buildLink('Sliver App Bar', SliverPage.routeName),
-                    _buildLink('Basic Animation', BasicAnimationHome.routeName),
-                    _buildLink('Staggered Profile Page', StaggeredProfilePageAnimator.routeName),
-                    _buildLink('Parallax List', ParallaxList.routeName),
-                    _buildLink('Face Pile', FacePileScreen.routeName),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          _buildLink('Sliver App Bar', SliverPage.routeName),
+          _buildLink('Basic Animation', BasicAnimationHome.routeName),
+          _buildLink('Staggered Profile Page', StaggeredProfilePageAnimator.routeName),
+          _buildLink('Parallax List', ParallaxList.routeName),
+          _buildLink('Face Pile', FacePileScreen.routeName),
+          _buildLink('Basic clip path example', BasicClipPathExample.routeName),
+          const SizedBox(height: 30),
         ],
       ),
     );

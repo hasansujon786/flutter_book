@@ -9,5 +9,6 @@ routes() {
     StaggeredProfilePageAnimator.routeName: (context) => const StaggeredProfilePageAnimator(),
     FacePileScreen.routeName: (context) => const FacePileScreen(),
     ParallaxList.routeName: (context) => const ParallaxList(),
+    BasicClipPathExample.routeName: (context) => const BasicClipPathExample(),
   };
 }
