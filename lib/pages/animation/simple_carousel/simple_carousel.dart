@@ -1,3 +1,4 @@
+// https://itnext.io/dynamically-sized-animated-carousel-in-flutter-8a88b005be74
 import 'dart:math';
 
 import 'package:expandable_page_view/expandable_page_view.dart';
