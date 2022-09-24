@@ -10,6 +10,7 @@ routes() {
     FacePileScreen.routeName: (context) => const FacePileScreen(),
     ParallaxList.routeName: (context) => const ParallaxList(),
     BasicClipPathExample.routeName: (context) => const BasicClipPathExample(),
-    SimpleCarousel.routeName: (context) => const SimpleCarousel(),
+    AdvancedBazierCurve.routeName: (context) => const AdvancedBazierCurve(),
+    CarouselExamples.routeName: (context) => const CarouselExamples(),
   };
 }

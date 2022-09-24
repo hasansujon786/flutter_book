@@ -1,4 +1,7 @@
 // https://www.youtube.com/watch?v=P0eZ0XH5FdI&list=TLPQMjMwOTIwMjKf6dvcP8FEyg&index=5
+// ==> tools
+// https://itchylabs.com/tools/path-to-bezier/
+// https://fluttershapemaker.com/
 import 'package:flutter/material.dart';
 import 'package:flutter_book/pages/animation/curves/clip_shadow_path.dart';
 
