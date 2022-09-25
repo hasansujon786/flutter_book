@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
           _buildLink('Basic clip path example', BasicClipPathExample.routeName),
           _buildLink('Advanced Bazier Curve', AdvancedBazierCurve.routeName),
           _buildLink('Simple Carousel', CarouselExamples.routeName),
+          _buildLink('Controller Pattern', ControllerPattern.routeName),
           const SizedBox(height: 30),
         ],
       ),

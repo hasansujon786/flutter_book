@@ -12,5 +12,6 @@ routes() {
     BasicClipPathExample.routeName: (context) => const BasicClipPathExample(),
     AdvancedBazierCurve.routeName: (context) => const AdvancedBazierCurve(),
     CarouselExamples.routeName: (context) => const CarouselExamples(),
+    ControllerPattern.routeName: (context) => const ControllerPattern(),
   };
 }

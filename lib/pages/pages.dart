@@ -6,5 +6,7 @@ export 'animation/face_pile/face_pile.dart';
 export 'animation/parallax_list/parallax_list.dart';
 export 'animation/simple_carousel/carousel_examples.dart';
 export 'animation/staggered_profil/staggered_profile_page.dart';
+export 'animation/staggered_profil/staggered_profile_page.dart';
 export 'home.dart';
+export 'patterns/controller_pattern/controller_pattern.dart';
 export 'sliver.dart';
