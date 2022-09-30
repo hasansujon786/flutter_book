@@ -1,4 +1,5 @@
 export 'animation/basic/home.dart';
+export 'animation/basic/custom_animation.dart';
 export 'animation/basic/pokemon_details_page.dart';
 export 'animation/curves/advanced_bazier_curve.dart';
 export 'animation/curves/basic_clip_path.dart';

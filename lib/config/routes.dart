@@ -5,6 +5,7 @@ routes() {
     '/': (context) => const HomePage(),
     SliverPage.routeName: (context) => const SliverPage(),
     BasicAnimationHome.routeName: (context) => const BasicAnimationHome(),
+    CustomAnimation.routeName: (context) => const CustomAnimation(),
     PokemonDetailsPage.routeName: (context) => const PokemonDetailsPage(),
     StaggeredProfilePageAnimator.routeName: (context) => const StaggeredProfilePageAnimator(),
     FacePileScreen.routeName: (context) => const FacePileScreen(),
