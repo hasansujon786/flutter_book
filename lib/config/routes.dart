@@ -14,5 +14,6 @@ routes() {
     AdvancedBazierCurve.routeName: (context) => const AdvancedBazierCurve(),
     CarouselExamples.routeName: (context) => const CarouselExamples(),
     ControllerPattern.routeName: (context) => const ControllerPattern(),
+    AnimatedStackedList.routeName: (context) => const AnimatedStackedList(),
   };
 }

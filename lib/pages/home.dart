@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
         primary: false,
         shrinkWrap: true,
         children: [
+          _buildLink('Animated Stacked List', AnimatedStackedList.routeName),
           _buildLink('Basic Animation', BasicAnimationHome.routeName),
           _buildLink('Custom Animation', CustomAnimation.routeName),
           _buildLink('Sliver App Bar', SliverPage.routeName),
