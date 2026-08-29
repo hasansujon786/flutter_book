@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_book/drawer.dart';
 import 'package:flutter_book/home.dart';
 
 void main() {
@@ -31,9 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: AnimatingScaleDrawer(),
     );
   }
 }
-
-
