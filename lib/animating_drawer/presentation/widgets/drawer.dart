@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_book/home.dart';
+import 'package:flutter_book/animating_drawer/presentation/screens/animating_drawer_screen.dart';
 
 class AnimatingScaleDrawer extends StatefulWidget {
   const AnimatingScaleDrawer({super.key, this.child});
@@ -91,7 +91,7 @@ class _AnimatingScaleDrawerState extends State<AnimatingScaleDrawer>
                   child: child,
                 );
               },
-              child: MyHomePage(
+              child: AnimatingDrawerScreen(
                 title: 'Flutter Demo Home Page',
                 onToggle: () {
                   _controller.isCompleted

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title, required this.onToggle});
+class AnimatingDrawerScreen extends StatefulWidget {
+  const AnimatingDrawerScreen({super.key, required this.title, required this.onToggle});
   final VoidCallback onToggle;
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -16,10 +16,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<AnimatingDrawerScreen> createState() => _AnimatingDrawerScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AnimatingDrawerScreenState extends State<AnimatingDrawerScreen> {
   int _counter = 0;
 
   void _incrementCounter() {
